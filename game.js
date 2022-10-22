@@ -24,7 +24,15 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return ("It's a tie !")
     } else {
-        return ("Nop !")
+        if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
+            return ("You win !")
+            } else if (playerSelection === 'Paper' && computerSelection === 'Rock') {
+                return ('You win !')
+            } else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
+                return ('You win !')
+            } else {
+                return ('You loose')
+            }
     }
     // If not, then : 
     // If Player is Paper and Computer is Rock, then it's a win
