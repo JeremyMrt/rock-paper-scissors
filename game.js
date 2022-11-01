@@ -1,27 +1,25 @@
-// Comments are done as a first step Pseudocode
-
 // The Computer chooses an option randomly
  function getComputerChoice() {
     const choices = ['Paper', 'Rock','Scissors']
-    let computerChoice = choices[Math.floor(Math.random()*choices.length)];
+    var computerChoice = choices[Math.floor(Math.random()*choices.length)];
     return (computerChoice)
  }
 // The option is stored in a variable (not a const (to be verified?)) Scope to be verified as well
- const computerSelection = getComputerChoice()
- console.log(computerSelection)
+
+ //var computerSelection = getComputerChoice() --  Used before game()
+ //console.log(computerSelection) --  Used before game()
 
  // The player makes a selection, capitalized only on first letter
  function getPlayerChoice () {
-    let playerChoice = prompt("What will your choice be ?")
+    var playerChoice = prompt("What will your choice be ?")
     return (playerChoice.charAt(0).toUpperCase() + playerChoice.slice (1).toLowerCase())
 }
 
-let playerSelection = getPlayerChoice()
-console.log(playerSelection)
+//var playerSelection = getPlayerChoice() --  Used before game()
+//console.log(playerSelection) --  Used before game()
 
 // Game is ON !
 function playRound(playerSelection, computerSelection) {
-    // If both variables matches, it's a tie (using switch, this would be the default.. ?)
     if (playerSelection === computerSelection) {
         return (null)
     } else {
@@ -35,53 +33,53 @@ function playRound(playerSelection, computerSelection) {
                 return (false)
             }
     }
-
-    // If not, then : 
-    // If Player is Paper and Computer is Rock, then it's a win
-        // If computer is scissors, it's a loose
-    // IF Player is Rock and computer is Paper, it's a loose
-            // if comptuer is scissors, it's a win
-    // If player is scissors and computer paper, it's a win
-            // if computer is rock, its a loose
-
 }
-console.log (playRound(playerSelection,computerSelection))
+//console.log (playRound(playerSelection,computerSelection)) --  Used before game()
 
 // Getting to 5 games in a row
-        let computerScore  
-        let playerScore
 
 function game() {
 
+        var computerScore = 0 ; 
+        var playerScore = 0 ;
 
-    for (let i = 0 ; i < 4 ; i++) {
+    for (let i = 0 ; i < 5 ; i++) {
         
-        
-        let computerSelection = getComputerChoice();     
-       console.log(computerSelection) ;
         let playerSelection = getPlayerChoice() ;
-        console.log(playerSelection) ;
+        console.log('You chose ' + playerSelection) ;
 
-        let result = playRound(playerSelection, computerSelection) ;
+        let computerSelection = getComputerChoice();     
+       console.log('The computer chooses ' + computerSelection) ;
+
+
+        var result = playRound(playerSelection, computerSelection) ;
         console.log(result) ;
+
+        if (result===true) {
+            playerScore++;
+            console.log('Well played !')
+        } else if (result===false) {
+            computerScore++;
+            console.log('Bad choices happen..')
+        } else if (result===null) {
+            console.log('It\s a tie.')
+        }
+ 
+        console.log('Computer score is '  + computerScore)
+        console.log('Your score is ' + playerScore)
+        
     }
-    //if (result === true) {
-            
-    //      return ('You win !')
-    // } else if (result === false) {
-         
-    //        return ('You loose...')
-    //    } else if (result === null ) {
-    //        return ('It\'s a tie')
-    //    }
 
+    if (computerScore > playerScore) {
+        console.log('You loose...')
+    } else if (computerScore < playerScore) {
+        console.log('You win !! ')
+    } else if (computerScore === playerScore) {
+        console.log('It\'s a tie all the way. No luck !')
+    }
 
-        // Keeping score by creating 2 variables for computer and player
-        // That variable gets increased every win, until it reaches 3
+    console.log('Final computer score is '  + computerScore)
+    console.log('Your final score is ' + playerScore)
+} 
 
-        // After each iteration, console.log the current score
-        // Winner gets declared
-
-}        
-
- game()
+ game()    
