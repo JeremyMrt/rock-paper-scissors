@@ -12,7 +12,12 @@
  // The player makes a selection, capitalized only on first letter
  function getPlayerChoice () {
     var playerChoice = prompt("What will your choice be ?")
+    if (playerChoice===null) {
+        console.log('Giving up already ?')
+      
+    }
     return (playerChoice.charAt(0).toUpperCase() + playerChoice.slice (1).toLowerCase())
+
 }
 
 //var playerSelection = getPlayerChoice() --  Used before game()
@@ -71,15 +76,12 @@ function game() {
     }
 
     if (computerScore > playerScore) {
-        console.log('You loose...')
+        console.log('You loose by ' + (computerScore-playerScore) + (' point(s)... harsh !'))
     } else if (computerScore < playerScore) {
-        console.log('You win !! ')
+        console.log('You win !! You defeated this poor computer by ' + (playerScore-computerScore) + ' point(s)')
     } else if (computerScore === playerScore) {
         console.log('It\'s a tie all the way. No luck !')
     }
-
-    console.log('Final computer score is '  + computerScore)
-    console.log('Your final score is ' + playerScore)
 } 
 
  game()    
