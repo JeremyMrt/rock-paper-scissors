@@ -1,0 +1,52 @@
+body {
+    background-color: rgb(54,69,79);
+}
+h1 {
+    text-align: center;
+    color: whitesmoke;
+    margin-bottom: 60px;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: whitesmoke;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 30px;
+
+}
+
+.annonce-resultat {
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.player-choice,
+.computer-choice,
+.result-message {
+    text-align: center;
+}
+
+button {
+    font-size: 2rem;
+    padding: 5px 35px;
+    box-shadow: 5px 5px 12px 1px rgba(0,0,0,0.5);
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background-color: bisque;
+    
+}

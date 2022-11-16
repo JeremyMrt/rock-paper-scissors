@@ -1,69 +1,93 @@
 const buttons = document.querySelectorAll('button');
+const annonceResultat = document.querySelector('.result-message');
+const seePlayerChoice = document.querySelector('.player-choice');
+const seeComputerChoice = document.querySelector('.computer-choice');
+// const playerScore = document.querySelector('player-score');
+// const computerScore = document.querySelector('computer-score');
 
 function getComputerChoice() {
     const choices = ['Paper', 'Rock','Scissors']
     var computerChoice = choices[Math.floor(Math.random()*choices.length)];
-    console.log(computerChoice)
     return (computerChoice)
  }
 
 buttons.forEach((button) => {
    button.addEventListener('click', (e) => {
-      console.log(button.id)
       playRound(button.id, getComputerChoice());
 })
 })
 
 function playRound(playerSelection,computerSelect) {
- 
+
+
+ const screenPlayerChoice = document.createElement('p');
+ screenPlayerChoice.textContent = playerSelection;
+ seePlayerChoice.appendChild(screenPlayerChoice);
+
+ const screenComputerChoice = document.createElement('p');
+ screenComputerChoice.textContent = computerSelect;
+ seeComputerChoice.appendChild(screenComputerChoice);
+
+
    if (playerSelection === computerSelect) {
-         console.log('nul');
-         return null
+         const p = document.createElement('p');
+         p.textContent= "It's a tie.";
+         annonceResultat.appendChild(p);
+         return result = null
+      
       } else {
          if (playerSelection === 'Rock' && computerSelect === 'Scissors') {
-         console.log('win');   
-         return true
-           } else if (playerSelection === 'Paper' && computerSelect === 'Rock') {
-            console.log('win');     
-          return true
-           } else if (playerSelection === 'Scissors' && computerSelect === 'Paper') {
-            console.log('win');     
-            return true
-           } else {
-            console.log('lose');     
-           return true
+            const p = document.createElement('p');
+            p.textContent= "You win !";
+            annonceResultat.appendChild(p); 
+         return result = true
+           
+          } else if (playerSelection === 'Paper' && computerSelect === 'Rock') {
+            const p = document.createElement('p');
+            p.textContent= "You win !";
+            annonceResultat.appendChild(p);     
+          return result = true
+           
+         } else if (playerSelection === 'Scissors' && computerSelect === 'Paper') {
+            const p = document.createElement('p');
+            p.textContent= "You win !";
+            annonceResultat.appendChild(p);   
+            return result = true
+           
+         } else {
+            const p = document.createElement('p');
+            p.textContent= "You loose...";
+            annonceResultat.appendChild(p);    
+           return result = true
            }
    }
+
+
       };
 
 
 
 
-// function game() {
+// function isWinner() {
 
 //         var computerScore = 0 ; 
 //         var playerScore = 0 ;
 
 //     for (let i = 0 ; i < 5 ; i++) {
         
-//         let playerSelection = getPlayerChoice() ;
-//         console.log('You chose ' + playerSelection) ;
+//       var result = buttons.forEach((button) => {
+//          button.addEventListener('click', (e) => {
+//             playRound(button.id, getComputerChoice());
+//       })
+//       })
 
-//         let computerSelection = getComputerChoice();     
-//        console.log('The computer chooses ' + computerSelection) ;
-
-
-//         var result = playRound(playerSelection, computerSelection) ;
 //         console.log(result) ;
 
 //         if (result===true) {
 //             playerScore++;
-//             console.log('Well played !')
 //         } else if (result===false) {
 //             computerScore++;
-//             console.log('Bad choices happen..')
 //         } else if (result===null) {
-//             console.log('It\s a tie.')
 //         }
  
 //         console.log('Computer score is '  + computerScore)
@@ -71,14 +95,57 @@ function playRound(playerSelection,computerSelect) {
         
 //     }
 
-//     if (computerScore > playerScore) {
-//         console.log('You loose by ' + (computerScore-playerScore) + (' point(s)... harsh !'))
-//     } else if (computerScore < playerScore) {
-//         console.log('You win !! You defeated this poor computer by ' + (playerScore-computerScore) + ' point(s)')
-//     } else if (computerScore === playerScore) {
-//         console.log('It\'s a tie all the way. No luck !')
-//     }
 // } 
 
-//  game()    
 
+
+
+
+
+
+
+
+// SAVING PLAYROUND FUNCTION
+
+// function playRound(playerSelection,computerSelect) {
+//    const screenPlayerChoice = document.createElement('p');
+//    screenPlayerChoice.textContent = playerSelection;
+//    seePlayerChoice.appendChild(screenPlayerChoice);
+  
+//    const screenComputerChoice = document.createElement('p');
+//    screenComputerChoice.textContent = computerSelect;
+//    seeComputerChoice.appendChild(screenComputerChoice);
+  
+//      if (playerSelection === computerSelect) {
+//            const p = document.createElement('p');
+//            p.textContent= "It's a tie.";
+//            annonceResultat.appendChild(p);
+//            return null
+        
+//         } else {
+//            if (playerSelection === 'Rock' && computerSelect === 'Scissors') {
+//               const p = document.createElement('p');
+//               p.textContent= "You win !";
+//               annonceResultat.appendChild(p); 
+//            return true
+             
+//             } else if (playerSelection === 'Paper' && computerSelect === 'Rock') {
+//               const p = document.createElement('p');
+//               p.textContent= "You win !";
+//               annonceResultat.appendChild(p);     
+//             return true
+             
+//            } else if (playerSelection === 'Scissors' && computerSelect === 'Paper') {
+//               const p = document.createElement('p');
+//               p.textContent= "You win !";
+//               annonceResultat.appendChild(p);   
+//               return true
+             
+//            } else {
+//               const p = document.createElement('p');
+//               p.textContent= "You loose...";
+//               annonceResultat.appendChild(p);    
+//              return true
+//              }
+//      }
+//         };
