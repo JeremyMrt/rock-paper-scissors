@@ -2,8 +2,8 @@ const buttons = document.querySelectorAll('button');
 const annonceResultat = document.querySelector('.result-message');
 const seePlayerChoice = document.querySelector('.player-choice');
 const seeComputerChoice = document.querySelector('.computer-choice');
-// const playerScore = document.querySelector('player-score');
-// const computerScore = document.querySelector('computer-score');
+const playerScore = document.querySelector('player-score');
+const computerScore = document.querySelector('computer-score');
 
 function getComputerChoice() {
     const choices = ['Paper', 'Rock','Scissors']
@@ -16,6 +16,8 @@ buttons.forEach((button) => {
       playRound(button.id, getComputerChoice());
 })
 })
+
+
 
 function playRound(playerSelection,computerSelect) {
 
