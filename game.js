@@ -1,9 +1,22 @@
 const buttons = document.querySelectorAll('button');
 const annonceResultat = document.querySelector('.result-message');
-const seePlayerChoice = document.querySelector('.player-choice');
-const seeComputerChoice = document.querySelector('.computer-choice');
-const playerScore = document.querySelector('player-score');
-const computerScore = document.querySelector('computer-score');
+const playerChoiceDisplay = document.querySelector('.player-choice');
+const computerChoiceDisplay = document.querySelector('.computer-choice');
+const playerScoreDisplay = document.querySelector('.player-score');
+const computerScoreDisplay = document.querySelector('.computer-score');
+const startAgainDisplay = document.querySelector('.start-again')
+const gameResultDisplay = document.querySelector('.game-result')
+let computerScore = 0 ;
+let playerScore = 0 ;
+let result ;
+
+
+buttons.forEach((button) => {
+   button.addEventListener('click', (e) => {
+      playRound(button.id, getComputerChoice());
+      endGame();
+})
+})
 
 function getComputerChoice() {
     const choices = ['Paper', 'Rock','Scissors']
@@ -11,143 +24,78 @@ function getComputerChoice() {
     return (computerChoice)
  }
 
-buttons.forEach((button) => {
-   button.addEventListener('click', (e) => {
-      playRound(button.id, getComputerChoice());
-})
-})
-
-
-
 function playRound(playerSelection,computerSelect) {
 
+      const screenPlayerChoice = document.createElement('p');
+      screenPlayerChoice.textContent = playerSelection;
+      playerChoiceDisplay.appendChild(screenPlayerChoice);
 
- const screenPlayerChoice = document.createElement('p');
- screenPlayerChoice.textContent = playerSelection;
- seePlayerChoice.appendChild(screenPlayerChoice);
-
- const screenComputerChoice = document.createElement('p');
- screenComputerChoice.textContent = computerSelect;
- seeComputerChoice.appendChild(screenComputerChoice);
+      const screenComputerChoice = document.createElement('p');
+      screenComputerChoice.textContent = computerSelect;
+      computerChoiceDisplay.appendChild(screenComputerChoice);
 
 
-   if (playerSelection === computerSelect) {
-         const p = document.createElement('p');
-         p.textContent= "It's a tie.";
-         annonceResultat.appendChild(p);
-         return result = null
-      
-      } else {
-         if (playerSelection === 'Rock' && computerSelect === 'Scissors') {
-            const p = document.createElement('p');
-            p.textContent= "You win !";
-            annonceResultat.appendChild(p); 
-         return result = true
-           
-          } else if (playerSelection === 'Paper' && computerSelect === 'Rock') {
-            const p = document.createElement('p');
-            p.textContent= "You win !";
-            annonceResultat.appendChild(p);     
-          return result = true
-           
-         } else if (playerSelection === 'Scissors' && computerSelect === 'Paper') {
-            const p = document.createElement('p');
-            p.textContent= "You win !";
-            annonceResultat.appendChild(p);   
-            return result = true
-           
-         } else {
-            const p = document.createElement('p');
-            p.textContent= "You loose...";
-            annonceResultat.appendChild(p);    
-           return result = true
-           }
+         if (playerSelection === computerSelect) {
+               const p = document.createElement('p');
+               p.textContent= "It's a tie.";
+               annonceResultat.appendChild(p);
+               
+            
+            } else {
+               if ((playerSelection === 'Rock' && computerSelect === 'Scissors') || (playerSelection === 'Paper' && computerSelect === 'Rock') || (playerSelection === 'Scissors' && computerSelect === 'Paper') ) {
+                  const p = document.createElement('p');
+                  p.textContent= "You win !";
+                  annonceResultat.appendChild(p); 
+                  playerScore++
+                           
+               } else {
+                  const p = document.createElement('p');
+                  p.textContent= "You loose...";
+                  annonceResultat.appendChild(p);    
+                  computerScore++
+               }
+         }
+
+         computerScoreDisplay.textContent = computerScore;
+         playerScoreDisplay.textContent = playerScore;
+};
+
+function endGame() {
+   if (playerScore === 3) {
+      gameResultDisplay.textContent="You won !!";
+      gameResultDisplay.classList.add('win-txt');
    }
 
+   if (computerScore === 3) {
+      gameResultDisplay.textContent="You lost !!";
+      gameResultDisplay.classList.add('lost-txt');
+   }
 
-      };
+   if (computerScore===3 || playerScore===3) {
+      playerChoiceDisplay.textContent="";
+      annonceResultat.textContent="";
+      computerChoiceDisplay.textContent="";
 
+      const startAgainButton = document.createElement('button');
+      startAgainButton.innerHTML= "Start again ?" ;
+      startAgainDisplay.appendChild(startAgainButton);      
+      startAgainButton.addEventListener('click', startAgain);
+   }
+} 
 
+function startAgain() {
+   computerScore = 0;
+   playerScore = 0;
 
+   computerScoreDisplay.textContent = computerScore;
+   playerScoreDisplay.textContent = playerScore;
+   playerChoiceDisplay.textContent="";
+   annonceResultat.textContent="";
+   computerChoiceDisplay.textContent="";
 
-// function isWinner() {
+   gameResultDisplay.textContent="";
+   gameResultDisplay.classList.remove('lost-txt');
+   gameResultDisplay.classList.remove('win-txt');
 
-//         var computerScore = 0 ; 
-//         var playerScore = 0 ;
-
-//     for (let i = 0 ; i < 5 ; i++) {
-        
-//       var result = buttons.forEach((button) => {
-//          button.addEventListener('click', (e) => {
-//             playRound(button.id, getComputerChoice());
-//       })
-//       })
-
-//         console.log(result) ;
-
-//         if (result===true) {
-//             playerScore++;
-//         } else if (result===false) {
-//             computerScore++;
-//         } else if (result===null) {
-//         }
- 
-//         console.log('Computer score is '  + computerScore)
-//         console.log('Your score is ' + playerScore)
-        
-//     }
-
-// } 
-
-
-
-
-
-
-
-
-
-// SAVING PLAYROUND FUNCTION
-
-// function playRound(playerSelection,computerSelect) {
-//    const screenPlayerChoice = document.createElement('p');
-//    screenPlayerChoice.textContent = playerSelection;
-//    seePlayerChoice.appendChild(screenPlayerChoice);
-  
-//    const screenComputerChoice = document.createElement('p');
-//    screenComputerChoice.textContent = computerSelect;
-//    seeComputerChoice.appendChild(screenComputerChoice);
-  
-//      if (playerSelection === computerSelect) {
-//            const p = document.createElement('p');
-//            p.textContent= "It's a tie.";
-//            annonceResultat.appendChild(p);
-//            return null
-        
-//         } else {
-//            if (playerSelection === 'Rock' && computerSelect === 'Scissors') {
-//               const p = document.createElement('p');
-//               p.textContent= "You win !";
-//               annonceResultat.appendChild(p); 
-//            return true
-             
-//             } else if (playerSelection === 'Paper' && computerSelect === 'Rock') {
-//               const p = document.createElement('p');
-//               p.textContent= "You win !";
-//               annonceResultat.appendChild(p);     
-//             return true
-             
-//            } else if (playerSelection === 'Scissors' && computerSelect === 'Paper') {
-//               const p = document.createElement('p');
-//               p.textContent= "You win !";
-//               annonceResultat.appendChild(p);   
-//               return true
-             
-//            } else {
-//               const p = document.createElement('p');
-//               p.textContent= "You loose...";
-//               annonceResultat.appendChild(p);    
-//              return true
-//              }
-//      }
-//         };
+   startAgainDisplay.removeChild(startAgainDisplay.firstElementChild);
+}
