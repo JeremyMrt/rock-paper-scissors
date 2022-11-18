@@ -19,7 +19,7 @@ cards.forEach((card) => {
 })
 
 function getComputerChoice() {
-    const choices = ['Paper', 'Rock','Scissors']
+    const choices = ['Water', 'Fire','Plant']
     var computerChoice = choices[Math.floor(Math.random()*choices.length)];
     return (computerChoice)
  }
@@ -42,7 +42,7 @@ function playRound(playerSelection,computerSelect) {
                
             
             } else {
-               if ((playerSelection === 'Rock' && computerSelect === 'Scissors') || (playerSelection === 'Paper' && computerSelect === 'Rock') || (playerSelection === 'Scissors' && computerSelect === 'Paper') ) {
+               if ((playerSelection === 'Water' && computerSelect === 'Fire') || (playerSelection === 'Fire' && computerSelect === 'Plant') || (playerSelection === 'Plant' && computerSelect === 'Water') ) {
                   const p = document.createElement('p');
                   p.textContent= "You win !";
                   annonceResultat.appendChild(p); 
