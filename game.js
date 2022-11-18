@@ -1,5 +1,5 @@
 const cards = document.querySelectorAll('img');
-const annonceResultat = document.querySelector('.result-message');
+const resultMessage = document.querySelector('.result-message');
 const playerChoiceDisplay = document.querySelector('.player-choice');
 const computerChoiceDisplay = document.querySelector('.computer-choice');
 const playerScoreDisplay = document.querySelector('.player-score');
@@ -21,37 +21,56 @@ cards.forEach((card) => {
 function getComputerChoice() {
     const choices = ['Water', 'Fire','Plant']
     var computerChoice = choices[Math.floor(Math.random()*choices.length)];
-    return (computerChoice)
+    return (computerChoice);
  }
 
 function playRound(playerSelection,computerSelect) {
+   
+   const imgPlayerChoice = new Image(50,50);
+   switch(playerSelection) {
+      case 'Water':
+         imgPlayerChoice.src = 'images/carapuce-small.png';
+         break;
+      case 'Fire':
+         imgPlayerChoice.src = 'images/salameche-small.png';
+         break;
+      case 'Plant':
+         imgPlayerChoice.src = 'images/bulbizarre-small.png';
+         break
+   }
+   playerChoiceDisplay.appendChild(imgPlayerChoice);
 
-      const screenPlayerChoice = document.createElement('p');
-      screenPlayerChoice.textContent = playerSelection;
-      playerChoiceDisplay.appendChild(screenPlayerChoice);
-
-      const screenComputerChoice = document.createElement('p');
-      screenComputerChoice.textContent = computerSelect;
-      computerChoiceDisplay.appendChild(screenComputerChoice);
-
-
-         if (playerSelection === computerSelect) {
+   const imgComputerChoice = new Image(50,50);
+   switch(computerSelect) {
+      case 'Water':
+         imgComputerChoice.src = 'images/carapuce-small.png';
+         break;
+      case 'Fire':
+         imgComputerChoice.src = 'images/salameche-small.png';
+         break;
+      case 'Plant':
+         imgComputerChoice.src = 'images/bulbizarre-small.png';
+         break
+   }
+   computerChoiceDisplay.appendChild(imgComputerChoice);
+         
+   if (playerSelection === computerSelect) {
                const p = document.createElement('p');
-               p.textContent= "It's a tie.";
-               annonceResultat.appendChild(p);
+               p.textContent= "We call that a miss.";
+               resultMessage.appendChild(p);
                
             
             } else {
                if ((playerSelection === 'Water' && computerSelect === 'Fire') || (playerSelection === 'Fire' && computerSelect === 'Plant') || (playerSelection === 'Plant' && computerSelect === 'Water') ) {
                   const p = document.createElement('p');
-                  p.textContent= "You win !";
-                  annonceResultat.appendChild(p); 
+                  p.textContent= "It's very effective !";
+                  resultMessage.appendChild(p); 
                   playerScore++
                            
                } else {
                   const p = document.createElement('p');
-                  p.textContent= "You loose...";
-                  annonceResultat.appendChild(p);    
+                  p.textContent= "Oh no! Big hit!";
+                  resultMessage.appendChild(p);    
                   computerScore++
                }
          }
@@ -62,18 +81,18 @@ function playRound(playerSelection,computerSelect) {
 
 function endGame() {
    if (playerScore === 3) {
-      gameResultDisplay.textContent="You won !!";
+      gameResultDisplay.textContent=`You won ${playerScore} to ${computerScore} !`;
       gameResultDisplay.classList.add('win-txt');
    }
 
    if (computerScore === 3) {
-      gameResultDisplay.textContent="You lost !!";
+      gameResultDisplay.textContent=`You lost ${computerScore} to ${playerScore} !`;
       gameResultDisplay.classList.add('lost-txt');
    }
 
    if (computerScore===3 || playerScore===3) {
       playerChoiceDisplay.textContent="";
-      annonceResultat.textContent="";
+      resultMessage.textContent="";
       computerChoiceDisplay.textContent="";
 
       const startAgainButton = document.createElement('button');
@@ -90,8 +109,9 @@ function startAgain() {
    computerScoreDisplay.textContent = computerScore;
    playerScoreDisplay.textContent = playerScore;
    playerChoiceDisplay.textContent="";
-   annonceResultat.textContent="";
+   resultMessage.textContent="";
    computerChoiceDisplay.textContent="";
+
 
    gameResultDisplay.textContent="";
    gameResultDisplay.classList.remove('lost-txt');
