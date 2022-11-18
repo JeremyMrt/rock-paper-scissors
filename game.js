@@ -1,4 +1,4 @@
-const buttons = document.querySelectorAll('button');
+const cards = document.querySelectorAll('img');
 const annonceResultat = document.querySelector('.result-message');
 const playerChoiceDisplay = document.querySelector('.player-choice');
 const computerChoiceDisplay = document.querySelector('.computer-choice');
@@ -11,9 +11,9 @@ let playerScore = 0 ;
 let result ;
 
 
-buttons.forEach((button) => {
-   button.addEventListener('click', (e) => {
-      playRound(button.id, getComputerChoice());
+cards.forEach((card) => {
+   card.addEventListener('click', (e) => {
+      playRound(card.id, getComputerChoice());
       endGame();
 })
 })

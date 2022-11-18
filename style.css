@@ -14,6 +14,24 @@ h1 {
     font-size: 1.1rem;
 }
 
+.cards {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards img  {
+    width: 200px;
+    height: auto;
+    transition: 0.4s;
+}
+
+.cards img:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
 .score {
     display: flex;
     align-items: center;
