@@ -52,7 +52,7 @@ function playRound(playerSelection,computerSelect) {
          imgPlayerChoice.src = 'images/bulbizarre-small.png';
          break
    }
-   playerChoiceDisplay.appendChild(imgPlayerChoice);
+   playerChoiceDisplay.insertAdjacentElement('afterbegin', imgPlayerChoice);
 
    const imgComputerChoice = new Image(50,50);
    switch(computerSelect) {
@@ -66,25 +66,25 @@ function playRound(playerSelection,computerSelect) {
          imgComputerChoice.src = 'images/bulbizarre-small.png';
          break
    }
-   computerChoiceDisplay.appendChild(imgComputerChoice);
+   computerChoiceDisplay.insertAdjacentElement('afterbegin', imgComputerChoice);
          
    if (playerSelection === computerSelect) {
                const p = document.createElement('p');
                p.textContent= "No effect!";
-               resultMessage.appendChild(p);
+               resultMessage.insertAdjacentElement('afterbegin', p);
                
             
             } else {
                if ((playerSelection === 'Carapuce' && computerSelect === 'Salameche') || (playerSelection === 'Salameche' && computerSelect === 'Bulbizarre') || (playerSelection === 'Bulbizarre' && computerSelect === 'Carapuce') ) {
                   const p = document.createElement('p');
                   p.textContent= "Effective !";
-                  resultMessage.appendChild(p); 
+                  resultMessage.insertAdjacentElement('afterbegin', p);
                   playerScore++
                            
                } else {
                   const p = document.createElement('p');
                   p.textContent= "Oh no!";
-                  resultMessage.appendChild(p);    
+                  resultMessage.insertAdjacentElement('afterbegin', p);   
                   computerScore++
                }
          }
@@ -100,7 +100,7 @@ function endGame() {
    }
 
    if (computerScore === 3) {
-      gameResultDisplay.textContent=`GAME OVER`;
+      gameResultDisplay.textContent=`GAME OVER...`;
       gameResultDisplay.classList.add('lost-txt');
    }
 
@@ -111,7 +111,7 @@ function endGame() {
       resultBlock.style.display='none';
     
       const startAgainButton = document.createElement('button');
-      startAgainButton.innerHTML= "Start again" ;
+      startAgainButton.innerHTML= "Play" ;
       startAgainDisplay.appendChild(startAgainButton);      
       startAgainButton.addEventListener('click', startAgain);
    }

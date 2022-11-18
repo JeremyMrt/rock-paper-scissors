@@ -17,7 +17,7 @@ h1 {
     text-align: center;
     color: #3f3b20;
     font-size: 1.1rem;
-    line-height: 1.3em;
+    line-height: 2em;
 }
 
 .cards {
@@ -92,7 +92,7 @@ h1 {
 button {
     font-family: Pokemon;
     font-size: 2rem;
-    padding: 15px 30px;
+    padding: 20px 30px 15px 30px;
     box-shadow: 5px 5px 12px 1px #3f3b20;
     cursor: pointer;
     border: none;
@@ -130,13 +130,11 @@ button:hover {
 .win-txt,
 .lost-txt {
     text-align: center;
-    color: rgba(246,252,255,255);
-    font-size: 2rem ;
-    background-color: rgba(37,81,106,255) ; 
+    color: #3f3b20;
+    font-size: 2rem ; 
+    font-weight: bold;
     width: 600px;
     margin: 30px auto;
     margin-top: 10px;
-    border : 6px solid #c6a651;
-    padding: 30px;
     line-height: 1.3em;
 }
