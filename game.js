@@ -6,16 +6,21 @@ const playerScoreDisplay = document.querySelector('.player-score');
 const computerScoreDisplay = document.querySelector('.computer-score');
 const startAgainDisplay = document.querySelector('.start-again')
 const gameResultDisplay = document.querySelector('.game-result')
+const resultBlock = document.querySelector('.black-border');
 let computerScore = 0 ;
 let playerScore = 0 ;
 let result ;
+const controller = new AbortController();
 
 
 cards.forEach((card) => {
    card.addEventListener('click', (e) => {
       playRound(card.id, getComputerChoice());
       endGame();
-})
+      if (computerScore===3 || playerScore===3) {
+         controller.abort()
+      }
+}, {signal : controller.signal})
 })
 
 function getComputerChoice() {
@@ -56,7 +61,7 @@ function playRound(playerSelection,computerSelect) {
          
    if (playerSelection === computerSelect) {
                const p = document.createElement('p');
-               p.textContent= "We call that a miss.";
+               p.textContent= "No effect!";
                resultMessage.appendChild(p);
                
             
@@ -81,12 +86,12 @@ function playRound(playerSelection,computerSelect) {
 
 function endGame() {
    if (playerScore === 3) {
-      gameResultDisplay.textContent=`You won ${playerScore} to ${computerScore} !`;
+      gameResultDisplay.textContent=`You defeated Regis!`;
       gameResultDisplay.classList.add('win-txt');
    }
 
    if (computerScore === 3) {
-      gameResultDisplay.textContent=`You lost ${computerScore} to ${playerScore} !`;
+      gameResultDisplay.textContent=`GAME OVER`;
       gameResultDisplay.classList.add('lost-txt');
    }
 
@@ -94,9 +99,10 @@ function endGame() {
       playerChoiceDisplay.textContent="";
       resultMessage.textContent="";
       computerChoiceDisplay.textContent="";
-
+      resultBlock.style.display='none';
+    
       const startAgainButton = document.createElement('button');
-      startAgainButton.innerHTML= "Start again ?" ;
+      startAgainButton.innerHTML= "Start again" ;
       startAgainDisplay.appendChild(startAgainButton);      
       startAgainButton.addEventListener('click', startAgain);
    }
@@ -111,6 +117,7 @@ function startAgain() {
    playerChoiceDisplay.textContent="";
    resultMessage.textContent="";
    computerChoiceDisplay.textContent="";
+   resultBlock.style.display='flex';
 
 
    gameResultDisplay.textContent="";
@@ -118,4 +125,19 @@ function startAgain() {
    gameResultDisplay.classList.remove('win-txt');
 
    startAgainDisplay.removeChild(startAgainDisplay.firstElementChild);
+
+
+
+// Not very elegant. Need another solution to restart the loop after
+// having aborting it!
+   const controller = new AbortController();
+   cards.forEach((card) => {
+      card.addEventListener('click', (e) => {
+         playRound(card.id, getComputerChoice());
+         endGame();
+         if (computerScore===3 || playerScore===3) {
+            controller.abort()
+         }
+   }, {signal : controller.signal})
+   })
 }

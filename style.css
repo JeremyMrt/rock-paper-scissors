@@ -10,13 +10,14 @@ body {
 h1 {
     text-align: center;
     color: #3f3b20;
-
+    font-size: 3em;
 }
+
 .header p {
     text-align: center;
     color: #3f3b20;
-    margin-bottom: 60px;
     font-size: 1.1rem;
+    line-height: 1.3em;
 }
 
 .cards {
@@ -24,18 +25,19 @@ h1 {
     gap: 2rem;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin: 50px;
 }
 
 .cards img  {
     width: 200px;
     height: auto;
-    transition: 0.7s;
+    transition: 0.5s;
 }
 
 .cards img:hover {
     transform: scale(1.2);
     cursor: pointer;
+    box-shadow: 5px 5px 12px 1px rgba(37,81,106,255);
 }
 
 .cards:has(img:hover) > img:not(:hover) {
@@ -63,7 +65,6 @@ h1 {
     width: 650px;
     text-align: center;
     font-size: 0.9rem;
-
 }
 .black-border {
     background-color: black;
@@ -75,7 +76,6 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 
 .player-choice,
@@ -86,21 +86,23 @@ h1 {
     justify-content: flex-start;
     align-items: center;
     gap: 1.1rem;
+    line-height: 1.3em;
 }
 
 button {
+    font-family: Pokemon;
     font-size: 2rem;
-    padding: 5px 35px;
-    box-shadow: 5px 5px 12px 1px rgba(0,0,0,0.5);
+    padding: 15px 30px;
+    box-shadow: 5px 5px 12px 1px rgba(37,81,106,255);
     cursor: pointer;
     border: none;
-    transition: 0.4s;
+    color: rgba(37,81,106,255);
+    background-color: rgba(246,252,255,255);
 }
 
 button:hover {
-    transform: scale(1.1);
-    background-color: bisque;
-    
+    background-color: rgba(37,81,106,255);
+    color : rgba(246,252,255,255);
 }
 .player-score,
 .computer-score {
@@ -113,21 +115,19 @@ button:hover {
 
 .start-again {
     text-align: center;
-    margin-top: 50px;
 }
 
 .win-txt,
 .lost-txt {
     text-align: center;
+    color: rgba(246,252,255,255);
     font-size: 3rem ;
-    color: red;
     background-color: rgba(37,81,106,255) ; 
-    padding : 15px ; 
     box-shadow: 5px 5px 12px 1px rgba(0,0,0,0.5);
-    width: 65%;
-    margin: 20px auto;
-}
-
-.win-txt {
-    color: darkgreen;
+    width: 600px;
+    margin: 50px auto;
+    margin-top: 10px;
+    border : 6px solid #c6a651;
+    padding: 60px;
+    line-height: 1.3em;
 }
