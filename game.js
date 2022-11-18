@@ -7,11 +7,15 @@ const computerScoreDisplay = document.querySelector('.computer-score');
 const startAgainDisplay = document.querySelector('.start-again')
 const gameResultDisplay = document.querySelector('.game-result')
 const resultBlock = document.querySelector('.black-border');
+const scoreBlock = document.querySelector('.score');
+const startMessage = document.querySelector('.start')
 let computerScore = 0 ;
 let playerScore = 0 ;
 let result ;
 const controller = new AbortController();
 
+resultBlock.style.visibility='hidden';
+scoreBlock.style.visibility="hidden";
 
 cards.forEach((card) => {
    card.addEventListener('click', (e) => {
@@ -24,22 +28,27 @@ cards.forEach((card) => {
 })
 
 function getComputerChoice() {
-    const choices = ['Water', 'Fire','Plant']
+    const choices = ['Carapuce', 'Salameche','Bulbizarre']
     var computerChoice = choices[Math.floor(Math.random()*choices.length)];
     return (computerChoice);
  }
 
 function playRound(playerSelection,computerSelect) {
+
+   resultBlock.style.visibility='visible';
+   scoreBlock.style.visibility="visible";
+   startMessage.style.display="none";
+
    
    const imgPlayerChoice = new Image(50,50);
    switch(playerSelection) {
-      case 'Water':
+      case 'Carapuce':
          imgPlayerChoice.src = 'images/carapuce-small.png';
          break;
-      case 'Fire':
+      case 'Salameche':
          imgPlayerChoice.src = 'images/salameche-small.png';
          break;
-      case 'Plant':
+      case 'Bulbizarre':
          imgPlayerChoice.src = 'images/bulbizarre-small.png';
          break
    }
@@ -47,13 +56,13 @@ function playRound(playerSelection,computerSelect) {
 
    const imgComputerChoice = new Image(50,50);
    switch(computerSelect) {
-      case 'Water':
+      case 'Carapuce':
          imgComputerChoice.src = 'images/carapuce-small.png';
          break;
-      case 'Fire':
+      case 'Salameche':
          imgComputerChoice.src = 'images/salameche-small.png';
          break;
-      case 'Plant':
+      case 'Bulbizarre':
          imgComputerChoice.src = 'images/bulbizarre-small.png';
          break
    }
@@ -66,15 +75,15 @@ function playRound(playerSelection,computerSelect) {
                
             
             } else {
-               if ((playerSelection === 'Water' && computerSelect === 'Fire') || (playerSelection === 'Fire' && computerSelect === 'Plant') || (playerSelection === 'Plant' && computerSelect === 'Water') ) {
+               if ((playerSelection === 'Carapuce' && computerSelect === 'Salameche') || (playerSelection === 'Salameche' && computerSelect === 'Bulbizarre') || (playerSelection === 'Bulbizarre' && computerSelect === 'Carapuce') ) {
                   const p = document.createElement('p');
-                  p.textContent= "It's very effective !";
+                  p.textContent= "Effective !";
                   resultMessage.appendChild(p); 
                   playerScore++
                            
                } else {
                   const p = document.createElement('p');
-                  p.textContent= "Oh no! Big hit!";
+                  p.textContent= "Oh no!";
                   resultMessage.appendChild(p);    
                   computerScore++
                }

@@ -25,7 +25,7 @@ h1 {
     gap: 2rem;
     justify-content: center;
     align-items: center;
-    margin: 50px;
+    margin: 20px 0px 40px 0px;
 }
 
 .cards img  {
@@ -37,11 +37,11 @@ h1 {
 .cards img:hover {
     transform: scale(1.2);
     cursor: pointer;
-    box-shadow: 5px 5px 12px 1px rgba(37,81,106,255);
+    box-shadow: 5px 5px 12px 1px #3f3b20;
 }
 
 .cards:has(img:hover) > img:not(:hover) {
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .score {
@@ -93,17 +93,27 @@ button {
     font-family: Pokemon;
     font-size: 2rem;
     padding: 15px 30px;
-    box-shadow: 5px 5px 12px 1px rgba(37,81,106,255);
+    box-shadow: 5px 5px 12px 1px #3f3b20;
     cursor: pointer;
     border: none;
     color: rgba(37,81,106,255);
     background-color: rgba(246,252,255,255);
+    color: #3f3b20;
+    text-transform: uppercase;
 }
 
 button:hover {
     background-color: rgba(37,81,106,255);
     color : rgba(246,252,255,255);
 }
+
+.start {
+    text-align: center;
+    color:#3f3b20;
+    font-size: 2em;
+    line-height: 1.3em;
+}
+
 .player-score,
 .computer-score {
     font-size: 4rem;
@@ -121,13 +131,12 @@ button:hover {
 .lost-txt {
     text-align: center;
     color: rgba(246,252,255,255);
-    font-size: 3rem ;
+    font-size: 2rem ;
     background-color: rgba(37,81,106,255) ; 
-    box-shadow: 5px 5px 12px 1px rgba(0,0,0,0.5);
     width: 600px;
-    margin: 50px auto;
+    margin: 30px auto;
     margin-top: 10px;
     border : 6px solid #c6a651;
-    padding: 60px;
+    padding: 30px;
     line-height: 1.3em;
 }
