@@ -25,15 +25,41 @@ body {
 h1 {
     text-align: center;
     color: #3f3b20;
-    font-size: 3em;
+    font-size: 3rem;
 }
 
-.header p {
+.dialog {
     text-align: center;
     color: #3f3b20;
     font-size: 1.1rem;
     line-height: 2em;
-}
+/* TRYING OF POKEMON LIKE DIALOG FROM CODEPEN */
+    font-family: Pokemon;
+    border-radius: 2px;
+    padding: 14px;
+    width: 600px;
+    height: 75px;
+    margin: auto;
+    margin-bottom: 50px;
+    background: white;
+    border: 1px solid white;
+    box-shadow: 0 1px 0 1px black,
+                inset 0 1px 0 1px black,
+                0 0 0 1px black,
+                inset 0 0 0 1px black;
+    position: relative;
+  }
+
+  .dialog > i {
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #3f3b20;
+    position: absolute;
+    bottom:0;
+    right: 0;
+    margin-right: 1rem;
+  }
 
 .cards {
     display: flex;
@@ -208,36 +234,6 @@ button:active {
 }
 
 
-/* TRYING OF POKEMON LIKE DIALOG FROM CODEPEN */
-.dialog
-{
-    font-size: 8px;
-    font-family: Pokemon;
-    border-radius: 2px;
-    padding: 14px;
-    width: 600px;
-    height: 75px;
-    line-height: 16px;
-    margin: auto;
-    margin-bottom: 50px;
-    background: white;
-    border: 1px solid white;
-    box-shadow: 0 1px 0 1px black,
-                inset 0 1px 0 1px black,
-                0 0 0 1px black,
-                inset 0 0 0 1px black;
-  }
-
-  .dialog > i {
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-top-color: #3f3b20;
-    float: right;
-    margin-right: -5px;
-    margin-top: 70px;
-  }
-
   footer {
     font-size: 0.4em;
     text-align: center;
@@ -270,20 +266,19 @@ button:active {
 
   /* MEDIA QUERY */
 
-  @media all and (max-width: 700px) {
+  @media all and (max-width: 800px) {
     .main,
     .header,
-    .dialog,
     .cards,
     .start,
-    .score,
-    .start-again {
+    .score {
         width: auto;
     }
 
     .annonce-resultat,
-    .game-result {
-        width: 90%;
+    .game-result,
+    .dialog {
+        width: 80%;
     }
 
     .header h1 {
@@ -291,7 +286,8 @@ button:active {
     }
 
     .dialog {
-        height: 100px;
+        height: fit-content;
+        font-size: 0.9rem;
     }
 
     .start {
@@ -302,7 +298,7 @@ button:active {
         gap: 0.7rem;
     }
     .cards img {
-        width: 150px;
+        width: 30%;
         height: auto;
     }
 
@@ -313,9 +309,9 @@ button:active {
         box-shadow: 1px 1px 8px 1px #3f3b20;
     }
     .annonce-resultat {
-        font-size: 13px;
+        font-size: 0.9rem;
         line-height: 1.5rem;
-        gap: 3rem;
+        gap: 2.5rem;
     }
 
     .annonce-resultat h2 {
@@ -324,13 +320,24 @@ button:active {
 
     .score {
         gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .player-score,
+    .computer-score {
+        font-size: 2rem;
     }
     .game-result{
-        font-size: 20px;
+        font-size: 0.9rem;
     }
 
     .portraits {
-        width: 60px;
+        width: 40px;
         height: auto;
     }
+
+    button {
+        font-size: 0.9rem;
+    }
+    
 }

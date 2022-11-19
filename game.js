@@ -187,12 +187,12 @@ function startAgain() {
          if (clickActive) {
          playRound(card.id, getComputerChoice());
          // Waiting for round 3 to be showned, and then showing the end results        
-         endTimer = setTimeout(endGame, 3000);
+         endTimer = setTimeout(endGame, 3900);
          // Prevent click
          clickActive = 0;
          setTimeout (function() {
             clickActive = 1;
-         }, 3100);
+         }, 3300);
          }
          // Stoping click when game is over
          if (computerScore===3 || playerScore===3) {
