@@ -26,6 +26,8 @@ h1 {
     justify-content: center;
     align-items: center;
     margin: 20px 0px 40px 0px;
+    opacity:0;
+    animation: transition 0.8s ease-in-out 6s forwards;
 }
 
 .cards img  {
@@ -52,30 +54,33 @@ h1 {
     color: #3f3b20;
 }
 
-.annonce-resultat {
-    background-color: rgba(37,81,106,255);
-    color: rgba(246,252,255,255);
-    border : 6px solid #c6a651;
-    border-radius: 10px;
-    padding : 15px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5rem;
-    width: 650px;
-    text-align: center;
-    font-size: 0.9rem;
+.portraits {
+    width: 70px;
+    height: auto;
+    margin-bottom: 10px;
 }
-.black-border {
-    background-color: black;
-    border: 5px solid black;
-    width : 700px;
-    margin: 0 auto;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+.annonce-resultat {
+    display : flex;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 5rem;
+    font-size: 0,9rem;
+    font-family: Pokemon;
+    color: #3f3b20;
+    border-radius: 2px;
+    padding: 15px;
+    width: 650px;
+    line-height: 16px;
+    margin: auto;
+    margin-bottom: 50px;
+    background: white;
+    border: 1px solid white;
+    box-shadow: 0 1px 0 1px black,
+                inset 0 1px 0 1px black,
+                0 0 0 1px black,
+                inset 0 0 0 1px black;
 }
 
 .player-choice,
@@ -87,6 +92,37 @@ h1 {
     align-items: center;
     gap: 1.1rem;
     line-height: 1.3em;
+    transition: 0.7s;
+}
+
+h2 {
+    padding-top: 18px;
+}
+
+
+.annonce-resultat h2 {
+    margin-bottom: 40px;
+}
+
+.animation-ia-choice {
+    opacity:0;
+    animation: transition 0.5s ease-in-out 1.1s forwards;
+}
+
+.animation-result-message {
+    opacity:0;
+    animation: transition 0.5s ease-in-out 1.7s forwards;
+}
+
+.animation-player-choice {
+    opacity:0;
+    animation: transition 0.5s ease-in-out 0.1s forwards;
+}
+
+
+@keyframes transition {
+    0%   { opacity:0; }
+    100% { opacity:1; }
 }
 
 button {
@@ -138,3 +174,63 @@ button:hover {
     margin-top: 10px;
     line-height: 1.3em;
 }
+
+.game-result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:0;
+}
+
+
+/* TRYING OF POKEMON LIKE DIALOG FROM CODEPEN */
+.dialog
+{
+    font-size: 8px;
+    font-family: Pokemon;
+    border-radius: 2px;
+    padding: 14px;
+    width: 600px;
+    height: 75px;
+    line-height: 16px;
+    margin: auto;
+    margin-bottom: 50px;
+    background: white;
+    border: 1px solid white;
+    box-shadow: 0 1px 0 1px black,
+                inset 0 1px 0 1px black,
+                0 0 0 1px black,
+                inset 0 0 0 1px black;
+  }
+
+  .dialog > i {
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #3f3b20;
+    float: right;
+    margin-right: -5px;
+    margin-top: 70px;
+  }
+  
+
+
+  /* TYPEWRITER EFFECT TRYOUTS */
+
+  .start {
+    overflow: hidden;
+    opacity: 0;
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    animation:
+      transition 0.5s ease-in-out 0.1s forwards,
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
+    animation-delay : 6.5s, 6.5s, 6.5s;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }

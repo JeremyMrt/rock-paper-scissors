@@ -1,4 +1,4 @@
-const cards = document.querySelectorAll('img');
+const cards = document.querySelectorAll('.cards > img');
 const resultMessage = document.querySelector('.result-message');
 const playerChoiceDisplay = document.querySelector('.player-choice');
 const computerChoiceDisplay = document.querySelector('.computer-choice');
@@ -6,7 +6,7 @@ const playerScoreDisplay = document.querySelector('.player-score');
 const computerScoreDisplay = document.querySelector('.computer-score');
 const startAgainDisplay = document.querySelector('.start-again')
 const gameResultDisplay = document.querySelector('.game-result')
-const resultBlock = document.querySelector('.black-border');
+const resultBlock = document.querySelector('.annonce-resultat');
 const scoreBlock = document.querySelector('.score');
 const startMessage = document.querySelector('.start')
 let computerScore = 0 ;
@@ -17,15 +17,36 @@ const controller = new AbortController();
 resultBlock.style.visibility='hidden';
 scoreBlock.style.visibility="hidden";
 
+
+// TYPEWRITER EFFECT TRYOUTS
+var str = "Beat your rival Gary, and reach 3 points before he does!"
+var interval;
+var index= 0;
+
+interval = setInterval(typewriter, 100);
+
+function typewriter() {
+   if (index >= str.length) {
+      clearInterval(interval);
+   } else {
+      $('.dialog').append(str[index]);
+      index++;
+   }
+}
+
+// GAME ITSELF
+
 cards.forEach((card) => {
    card.addEventListener('click', (e) => {
-      playRound(card.id, getComputerChoice());
+      playRound(card.id, getComputerChoice());        
       endGame();
+
       if (computerScore===3 || playerScore===3) {
          controller.abort()
       }
 }, {signal : controller.signal})
 })
+
 
 function getComputerChoice() {
     const choices = ['Carapuce', 'Salameche','Bulbizarre']
@@ -53,6 +74,7 @@ function playRound(playerSelection,computerSelect) {
          break
    }
    playerChoiceDisplay.insertAdjacentElement('afterbegin', imgPlayerChoice);
+   imgPlayerChoice.classList.add('animation-player-choice');
 
    const imgComputerChoice = new Image(50,50);
    switch(computerSelect) {
@@ -67,35 +89,53 @@ function playRound(playerSelection,computerSelect) {
          break
    }
    computerChoiceDisplay.insertAdjacentElement('afterbegin', imgComputerChoice);
+   imgComputerChoice.classList.add('animation-ia-choice');
          
    if (playerSelection === computerSelect) {
                const p = document.createElement('p');
                p.textContent= "No effect!";
                resultMessage.insertAdjacentElement('afterbegin', p);
-               
+               p.classList.add('animation-result-message')  
             
             } else {
                if ((playerSelection === 'Carapuce' && computerSelect === 'Salameche') || (playerSelection === 'Salameche' && computerSelect === 'Bulbizarre') || (playerSelection === 'Bulbizarre' && computerSelect === 'Carapuce') ) {
                   const p = document.createElement('p');
                   p.textContent= "Effective !";
                   resultMessage.insertAdjacentElement('afterbegin', p);
+                  p.classList.add('animation-result-message')  
                   playerScore++
                            
                } else {
                   const p = document.createElement('p');
                   p.textContent= "Oh no!";
-                  resultMessage.insertAdjacentElement('afterbegin', p);   
+                  resultMessage.insertAdjacentElement('afterbegin', p);
+                  p.classList.add('animation-result-message')   
                   computerScore++
                }
          }
-
+         
          computerScoreDisplay.textContent = computerScore;
          playerScoreDisplay.textContent = playerScore;
 };
 
+// function scoreFollowUp() {
+
+//    if (result==="computerWinner") {
+//       computerScore++
+//    }
+
+//    else if (result==="playerWinner") {
+//       playerScore++
+//    }
+
+//    else {}
+//    computerScoreDisplay.textContent = computerScore;
+//    playerScoreDisplay.textContent = playerScore;
+// }
+
 function endGame() {
    if (playerScore === 3) {
-      gameResultDisplay.textContent=`You defeated Regis!`;
+      gameResultDisplay.innerHTML="<img src='images/badge.png' width='100'> You defeated Regis!<br>Take your badge";
       gameResultDisplay.classList.add('win-txt');
    }
 
@@ -111,7 +151,7 @@ function endGame() {
       resultBlock.style.display='none';
     
       const startAgainButton = document.createElement('button');
-      startAgainButton.innerHTML= "Play" ;
+      startAgainButton.innerHTML= "Fight again" ;
       startAgainDisplay.appendChild(startAgainButton);      
       startAgainButton.addEventListener('click', startAgain);
    }
@@ -123,9 +163,8 @@ function startAgain() {
 
    computerScoreDisplay.textContent = computerScore;
    playerScoreDisplay.textContent = playerScore;
-   playerChoiceDisplay.textContent="";
    resultMessage.textContent="";
-   computerChoiceDisplay.textContent="";
+
    resultBlock.style.display='flex';
 
 
@@ -144,9 +183,10 @@ function startAgain() {
       card.addEventListener('click', (e) => {
          playRound(card.id, getComputerChoice());
          endGame();
+   
          if (computerScore===3 || playerScore===3) {
             controller.abort()
          }
    }, {signal : controller.signal})
-   })
+})
 }

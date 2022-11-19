@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./game.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Poke Shuffle</title>
 </head>
 <body>
     <div class="header">
-        <p>Play a game of</p>
         <h1>Poke_Shuffle</h1>
-        <p>Beat your archnemesis Regis,<br> and reach 3 points before he does!</p>
+        <p class="dialog"><i></i></p>
     </div>
 
     <div class="cards">
@@ -21,7 +21,7 @@
         <img id ="Bulbizarre" src="./images/bulbizarre.jpg" alt="bulbizarre pokemon">
     </div>
 
-    <p class="start">Choose your first companion!</p>
+    <p class="start">Select a Pokemon</p>
 
     <div class="score">
         <div>
@@ -34,16 +34,17 @@
     </div>
 
 
-<div class="black-border">
+
 
     <div class="annonce-resultat">
+       
         <div>
-            <h2>You</h2> 
+            <img class="portraits" src="images/sacha.png" alt="sacha ketchum"> 
             <div class="player-choice"></div>
         </div>
         
         <div>
-            <h2>Regis</h2> 
+            <img class="portraits" src="images/Spr_FRLG_Blue_Champion.webp" alt="gary oak"> 
             <div class="computer-choice"></div>
         </div>  
         
@@ -52,7 +53,7 @@
             <div class="result-message"></div>
         </div>
     </div>
-</div>
+
 
     <div class="game-result"></div>
 
