@@ -4,9 +4,24 @@
 }
 
 body {
-    background-color:#ebf3e8;
-    font-family: Pokemon;
+    background: url(images/background.png);
+    font-family: Pokemon, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 0;
+    margin: 0;
 }
+
+.main {
+    background-color: rgba(235,243,232,0.9) ;
+    width: 800px;
+    height: 100%;
+    margin: 0 auto;
+    border: 1px solid white;
+    box-shadow: 0 1px 0 1px black,
+                inset 0 1px 0 1px black,
+                0 0 0 1px black,
+                inset 0 0 0 1px black;
+}
+
 h1 {
     text-align: center;
     color: #3f3b20;
@@ -95,13 +110,9 @@ h1 {
     transition: 0.7s;
 }
 
-h2 {
-    padding-top: 18px;
-}
-
-
 .annonce-resultat h2 {
     margin-bottom: 40px;
+    padding-top: 18px;
 }
 
 .animation-ia-choice {
@@ -128,19 +139,23 @@ h2 {
 button {
     font-family: Pokemon;
     font-size: 2rem;
-    padding: 20px 30px 15px 30px;
-    box-shadow: 5px 5px 12px 1px #3f3b20;
+    font-weight: bold;
+    padding: 30px 30px 15px 30px;
     cursor: pointer;
-    border: none;
-    color: rgba(37,81,106,255);
-    background-color: rgba(246,252,255,255);
     color: #3f3b20;
     text-transform: uppercase;
+    background: white;
+    border: 1px solid white;
+    box-shadow: 0 1px 0 1px black,
+                inset 0 1px 0 1px black,
+                0 0 0 1px black,
+                inset 0 0 0 1px black;
 }
 
-button:hover {
-    background-color: rgba(37,81,106,255);
-    color : rgba(246,252,255,255);
+button:hover,
+button:active {
+    background-color: #3f3b20;
+    color : white;
 }
 
 .start {
@@ -168,11 +183,20 @@ button:hover {
     text-align: center;
     color: #3f3b20;
     font-size: 2rem ; 
-    font-weight: bold;
-    width: 600px;
-    margin: 30px auto;
-    margin-top: 10px;
-    line-height: 1.3em;
+    border-radius: 2px;
+    padding: 14px;
+    padding-top: 18px;
+    width: 650px;
+    height: 75px;
+    line-height: 16px;
+    margin: auto;
+    margin-bottom: 50px;
+    background: white;
+    border: 1px solid white;
+    box-shadow: 0 1px 0 1px black,
+                inset 0 1px 0 1px black,
+                0 0 0 1px black,
+                inset 0 0 0 1px black;
 }
 
 .game-result {
@@ -180,6 +204,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     gap:0;
+    margin: 40px auto;
 }
 
 
@@ -212,6 +237,14 @@ button:hover {
     margin-right: -5px;
     margin-top: 70px;
   }
+
+  footer {
+    font-size: 0.4em;
+    text-align: center;
+    margin-top: 50px ;
+    position: aboslute;
+    bottom: 0;
+  }
   
 
 
@@ -234,3 +267,70 @@ button:hover {
     from { width: 0 }
     to { width: 100% }
   }
+
+  /* MEDIA QUERY */
+
+  @media all and (max-width: 700px) {
+    .main,
+    .header,
+    .dialog,
+    .cards,
+    .start,
+    .score,
+    .start-again {
+        width: auto;
+    }
+
+    .annonce-resultat,
+    .game-result {
+        width: 90%;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .dialog {
+        height: 100px;
+    }
+
+    .start {
+        font-size: 1rem;
+    }
+
+    .cards{
+        gap: 0.7rem;
+    }
+    .cards img {
+        width: 150px;
+        height: auto;
+    }
+
+    .cards img:hover,
+    .cards img:active {
+        transform: scale(1.05);
+        cursor: pointer;
+        box-shadow: 1px 1px 8px 1px #3f3b20;
+    }
+    .annonce-resultat {
+        font-size: 13px;
+        line-height: 1.5rem;
+        gap: 3rem;
+    }
+
+    .annonce-resultat h2 {
+        font-size: 16px;
+    }
+
+    .score {
+        gap: 1rem;
+    }
+    .game-result{
+        font-size: 20px;
+    }
+
+    .portraits {
+        width: 60px;
+        height: auto;
+    }
+}

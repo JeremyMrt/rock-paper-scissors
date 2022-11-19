@@ -8,7 +8,8 @@ const startAgainDisplay = document.querySelector('.start-again')
 const gameResultDisplay = document.querySelector('.game-result')
 const resultBlock = document.querySelector('.annonce-resultat');
 const scoreBlock = document.querySelector('.score');
-const startMessage = document.querySelector('.start')
+const startMessage = document.querySelector('.start');
+const dialogBlock = document.querySelector('.dialog');
 let computerScore = 0 ;
 let playerScore = 0 ;
 let result ;
@@ -43,12 +44,12 @@ cards.forEach((card) => {
       if (clickActive) {
       playRound(card.id, getComputerChoice());
       // Waiting for round 3 to be showned, and then showing the end results        
-      endTimer = setTimeout(endGame, 3000);
+      endTimer = setTimeout(endGame, 3900);
       // Prevent click
       clickActive = 0;
       setTimeout (function() {
          clickActive = 1;
-      }, 3100);
+      }, 3300);
       }
       // Stoping click when game is over
       if (computerScore===3 || playerScore===3) {
@@ -69,6 +70,8 @@ function playRound(playerSelection,computerSelect) {
    resultBlock.style.visibility='visible';
    scoreBlock.style.visibility="visible";
    startMessage.style.display="none";
+   dialogBlock.style.display="none";
+
 
    
    const imgPlayerChoice = new Image(50,50);
@@ -124,13 +127,17 @@ function playRound(playerSelection,computerSelect) {
                }
          }
          
-         computerScoreDisplay.textContent = computerScore;
-         playerScoreDisplay.textContent = playerScore;
+         setTimeout(scoreUp,2800);
 };
+
+function scoreUp() {
+   computerScoreDisplay.textContent = computerScore;
+   playerScoreDisplay.textContent = playerScore;
+}
 
 function endGame() {
    if (playerScore === 3) {
-      gameResultDisplay.innerHTML="<img src='images/badge.png' width='100'> You defeated Regis!<br>Take your badge";
+      gameResultDisplay.innerHTML="You defeated Gary!";
       gameResultDisplay.classList.add('win-txt');
    }
 
@@ -177,12 +184,20 @@ function startAgain() {
    const controller = new AbortController();
    cards.forEach((card) => {
       card.addEventListener('click', (e) => {
+         if (clickActive) {
          playRound(card.id, getComputerChoice());
-         endGame();
-   
+         // Waiting for round 3 to be showned, and then showing the end results        
+         endTimer = setTimeout(endGame, 3000);
+         // Prevent click
+         clickActive = 0;
+         setTimeout (function() {
+            clickActive = 1;
+         }, 3100);
+         }
+         // Stoping click when game is over
          if (computerScore===3 || playerScore===3) {
             controller.abort()
          }
    }, {signal : controller.signal})
-})
+   })
 }
