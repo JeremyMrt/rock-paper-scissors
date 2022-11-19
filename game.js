@@ -36,11 +36,21 @@ function typewriter() {
 
 // GAME ITSELF
 
+var clickActive = 1; // To prevent clicking within a 3 seconde span
+
 cards.forEach((card) => {
    card.addEventListener('click', (e) => {
-      playRound(card.id, getComputerChoice());        
-      endGame();
-
+      if (clickActive) {
+      playRound(card.id, getComputerChoice());
+      // Waiting for round 3 to be showned, and then showing the end results        
+      endTimer = setTimeout(endGame, 3000);
+      // Prevent click
+      clickActive = 0;
+      setTimeout (function() {
+         clickActive = 1;
+      }, 3100);
+      }
+      // Stoping click when game is over
       if (computerScore===3 || playerScore===3) {
          controller.abort()
       }
@@ -118,21 +128,6 @@ function playRound(playerSelection,computerSelect) {
          playerScoreDisplay.textContent = playerScore;
 };
 
-// function scoreFollowUp() {
-
-//    if (result==="computerWinner") {
-//       computerScore++
-//    }
-
-//    else if (result==="playerWinner") {
-//       playerScore++
-//    }
-
-//    else {}
-//    computerScoreDisplay.textContent = computerScore;
-//    playerScoreDisplay.textContent = playerScore;
-// }
-
 function endGame() {
    if (playerScore === 3) {
       gameResultDisplay.innerHTML="<img src='images/badge.png' width='100'> You defeated Regis!<br>Take your badge";
@@ -155,6 +150,7 @@ function endGame() {
       startAgainDisplay.appendChild(startAgainButton);      
       startAgainButton.addEventListener('click', startAgain);
    }
+   clearTimeout(endTimer);
 } 
 
 function startAgain() {
